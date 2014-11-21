@@ -1,0 +1,9 @@
+count=0
+def groupkey(key1):
+ for(i in range(len(key1)):
+  if(x['groupMemberships']['values'][i]['group'].keys()=="id"):
+    count=1
+ if count!=1: 
+  udate_dict={'groupmembership':{'values':[{'group':{'id':"null"}}]}}
+  x.update(udate_dict)
+   
