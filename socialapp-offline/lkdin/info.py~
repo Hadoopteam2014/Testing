@@ -1,0 +1,25 @@
+from linkedin import linkedin
+from viewer.models import project
+import json
+
+CONSUMER_KEY = '75nanr9qwylt2d'
+CONSUMER_SECRET = 'UpORpgoDH1iUl2kL'
+USER_TOKEN = 'f02dba89-516c-43eb-9d95-78f9b713b729'
+USER_SECRET = '600b205a-c58c-4610-ba2d-f81901b3098e'
+
+RETURN_URL = ' http://127.0.0.1:8000/'
+auth = linkedin.LinkedInDeveloperAuthentication(CONSUMER_KEY,
+CONSUMER_SECRET,USER_TOKEN,USER_SECRET,RETURN_URL,permissions=linkedin.PERMISSIONS.enums.values())
+app = linkedin.LinkedInApplication(auth)
+
+#x = app.get_profile()
+x = app.get_profile(selectors=['id', 'firstName', 'lastName', 'location', 'distance', 'numConnections', 'skills', 'educations'])
+y = project(firstname = x['firstName'], lastname = x['lastName'], ids = x['id'], location = x['location'], skills = x['skills'], 
+        distance =x['distance'], numconnections = x['numConnections'], educations = x['educations'])
+y.save()
+'''data = app.get_profile()
+a = data['firstName']
+
+y = linked(firstname=a)
+y.save()'''
+
